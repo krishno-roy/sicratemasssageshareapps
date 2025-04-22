@@ -18,22 +18,22 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-black">
-      <div className="flex flex-col items-center p-5 shadow-md  bg-gray-400">
-        <h2 className="text-2xl mb-4">Login</h2>
+    <div className="min-h-screen flex justify-center items-center bg-blue-50">
+      <div className="flex flex-col items-center p-5 shadow-md bg-gradient-to-r from-yellow-600 to-pink-600">
+        <h2 className="text-2xl mb-4 font-bold text-white">Login</h2>
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 mb-2 w-64"
+          className="border p-2 mb-2 w-64 focus:outline-none rounded"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 mb-4 w-64"
+          className="border p-2 mb-4 w-64 focus:outline-none rounded"
         />
         <button
           onClick={handleLogin}
@@ -41,7 +41,7 @@ const Login = () => {
         >
           Login
         </button>
-        <p className="mt-4">
+        <p className="mt-4 ">
           Don't have an account?{" "}
           <Link to="/register" className="text-black underline">
             Register here

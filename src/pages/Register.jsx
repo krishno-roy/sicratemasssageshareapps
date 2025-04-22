@@ -20,29 +20,29 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-black">
-      <div className="flex flex-col items-center bg-gray-400 p-7 ">
-        <h2 className="text-2xl mb-4">Register</h2>
+    <div className="min-h-screen flex justify-center items-center bg-blue-50 ">
+      <div className="flex flex-col items-center bg-gray-400 p-7 rounded bg-gradient-to-r from-yellow-600 to-pink-600">
+        <h2 className="text-2xl mb-4 text-white font-bold">Register</h2>
         <input
           type="text"
           placeholder="Enter Your Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border p-2 mb-2 w-64 focus:outline-none"
+          className="border p-2 mb-2 w-64 focus:outline-none bg-gray-100 rounded"
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 mb-2 w-64 focus:outline-none"
+          className="border p-2 mb-2 w-64 focus:outline-none rounded"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 mb-4 w-64 focus:outline-none"
+          className="border p-2 mb-4 w-64 focus:outline-none rounded"
         />
         <button
           onClick={handleRegister}
