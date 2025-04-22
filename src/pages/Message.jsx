@@ -1,26 +1,25 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
 
-const Message = () => {
+const ViewMessage = () => {
   const { id } = useParams();
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const storedMessage = localStorage.getItem(`secret-message-${id}`);
-    if (storedMessage) {
-      setMessage(storedMessage);
-      localStorage.removeItem(`secret-message-${id}`); // optional: delete after view
-    } else {
-      setMessage("This message has expired or doesn't exist.");
+    try {
+      const decoded = decodeURIComponent(escape(atob(id))); // decode base64
+      setMessage(decoded);
+    } catch (err) {
+      setMessage("This message is invalid or corrupted.");
     }
   }, [id]);
 
   return (
-    <div className="p-5">
-      <h1 className="text-xl mb-3">Secret Message</h1>
-      <p className="border p-4 bg-gray-100">{message}</p>
+    <div style={{ padding: 20 }}>
+      <h2>গোপন ম্যাসেজ</h2>
+      <p>{message}</p>
     </div>
   );
 };
 
-export default Message;
+export default ViewMessage;

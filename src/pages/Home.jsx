@@ -1,104 +1,43 @@
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState } from "react";
 
-const Home = () => {
+const CreateMessage = () => {
   const [message, setMessage] = useState("");
   const [link, setLink] = useState("");
-  const [copied, setCopied] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {
-    if (!message.trim()) {
-      alert("Message cannot be empty!");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const id = uuidv4();
-      localStorage.setItem(`secret-message-${id}`, message);
-
-      const fullLink = `${window.location.origin}/message/${id}`;
-      setLink(fullLink);
-
-      await navigator.clipboard.writeText(fullLink);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
-    } catch (error) {
-      console.error("Error creating message:", error);
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleShare = async () => {
-    if (!link) return;
-
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: "Secret Message",
-          text: "Check out this secret message:",
-          url: link,
-        });
-      } else {
-        await navigator.clipboard.writeText(link);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 3000);
-      }
-    } catch (error) {
-      console.error("Error sharing:", error);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const encoded = btoa(unescape(encodeURIComponent(message))); // encode in base64
+    const shareLink = `${window.location.origin}/message/${encoded}`;
+    setLink(shareLink);
+    setMessage("");
   };
 
   return (
-    <div className="p-5">
-      <h1 className="text-xl mb-3">Create Secret Message</h1>
-      <textarea
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Write your message here..."
-        className="w-full h-40 border p-2"
-      ></textarea>
-      <button
-        onClick={handleSubmit}
-        disabled={loading}
-        className={`mt-4 ${
-          loading ? "bg-gray-400" : "bg-green-600"
-        } text-white px-4 py-2 rounded`}
-      >
-        {loading ? "Generating..." : "Generate Secret Link"}
-      </button>
-
-      {copied && (
-        <p className="mt-2 text-green-600 font-semibold">
-          ✅ Link copied to clipboard!
-        </p>
-      )}
+    <div style={{ padding: 20 }}>
+      <h2>Write Your Secret Massage</h2>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          rows="6"
+          cols="40"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Write Your Massage Here "
+          required
+      
+          className="w-full"
+        />
+        <br />
+        <button type="submit" className="bg-black text-white py-2 px-4">Cleat Share Link</button>
+      </form>
 
       {link && (
-        <div className="mt-4">
-          <p>Your secret link:</p>
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 underline block break-all mb-2"
-          >
-            {link}
-          </a>
-          <button
-            onClick={handleShare}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
-          >
-            Share Link
-          </button>
+        <div>
+          <p>Share Your Link:</p>
+          <a href={link}>{link}</a>
         </div>
       )}
     </div>
   );
 };
 
-export default Home;
+export default CreateMessage;
