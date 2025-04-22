@@ -16,7 +16,7 @@ const ViewMessage = () => {
 
   return (
     <div style={{ padding: 20 }}>
-      <h2>গোপন ম্যাসেজ</h2>
+      <h2>See Your Secret Massage</h2>
       <p>{message}</p>
     </div>
   );

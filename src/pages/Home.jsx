@@ -13,7 +13,7 @@ const CreateMessage = () => {
   };
 
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 20 }} className="space-y-3">
       <h2>Write Your Secret Massage</h2>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -24,7 +24,7 @@ const CreateMessage = () => {
           placeholder="Write Your Massage Here "
           required
       
-          className="w-full"
+          className="w-full border p-4 rounded "
         />
         <br />
         <button type="submit" className="bg-black text-white py-2 px-4">Cleat Share Link</button>
