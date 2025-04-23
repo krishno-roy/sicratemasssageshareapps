@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ParticalBg from "../components/Particle/ParticalBg";
 
 const CreateMessage = () => {
   const [message, setMessage] = useState("");
