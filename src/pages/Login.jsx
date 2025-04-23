@@ -2,7 +2,6 @@ import { useState } from "react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate, Link } from "react-router";
-import ParticalBg from "../components/Particle/ParticalBg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
