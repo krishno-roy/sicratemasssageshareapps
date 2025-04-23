@@ -20,14 +20,7 @@ createRoot(document.getElementById("root")).render(
           </PrivateRoute>
         }
       />
-      <Route
-        path="/message/:id"
-        element={
-          <PrivateRoute>
-            <Message />
-          </PrivateRoute>
-        }
-      />
+      <Route path="/message/:id" element={<Message />} />
     </Routes>
   </Router>
 );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ParticalBg from "../components/Particle/ParticalBg";
 
 const CreateMessage = () => {
   const [message, setMessage] = useState("");
@@ -21,8 +22,10 @@ const CreateMessage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-blue-100 p-5">
-      <div className="bg-white shadow-xl rounded-2xl p-8 max-w-md w-full">
+    <div className="min-h-screen relative flex items-center justify-center bg-gradient-to-br from-purple-100 to-blue-100 p-5">
+   
+
+      <div className="bg-white shadow-xl rounded-2xl p-8 max-w-md w-full z-10 relative">
         <h2 className="text-2xl font-bold text-center mb-4 text-purple-700">
           Write a secret message
         </h2>
@@ -30,7 +33,7 @@ const CreateMessage = () => {
           <textarea
             className="w-full border border-gray-300 rounded-xl p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
             rows="5"
-            placeholder="Write here you massage..."
+            placeholder="Write here your message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
@@ -45,7 +48,7 @@ const CreateMessage = () => {
 
         {link && (
           <div className="mt-6 bg-gray-100 p-4 rounded-xl text-center break-words">
-            <p className="text-gray-700 mb-2">Share this link.:</p>
+            <p className="text-gray-700 mb-2">Share this link:</p>
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <a href={link} className="text-blue-600 underline break-all">
                 {link}
@@ -54,12 +57,13 @@ const CreateMessage = () => {
                 onClick={handleCopy}
                 className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
               >
-                {copied ? "✅Copied" : "📋 Copy"}
+                {copied ? "✅ Copied" : "📋 Copy"}
               </button>
             </div>
           </div>
         )}
       </div>
+      
     </div>
   );
 };
